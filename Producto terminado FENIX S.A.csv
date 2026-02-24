@@ -1,0 +1,304 @@
+MARCA ,TEMPORADA ,PROVEEDOR,CATEGORIA ,INFO GRAL.,CODIGO EAN ,DESCRIPCIÓN ,COLOR/WASH,CANTIDAD,ORIGEN,COSTO ESTIMADO ,PVP SUGERIDO B2C,PVP SUGERIDO B2B,MARGEN B2C,MARGEN B2B,FECHA APROXIMADA DE ARRIBO
+Martel ,SS25/26,Nomotex,Remera ,,,Remera cuello redondo PIMA,Azul,200,Perú,"$68,450.00","189,000  ","132,300",64%,48%,10/9/2025
+Martel ,SS25/26,Nomotex,Remera ,,,Remera cuello redondo PIMA,Beige,100,Perú,"$68,450.00","189,000  ","132,300",64%,48%,10/9/2025
+Martel ,SS25/26,Nomotex,Remera ,,,Remera cuello redondo PIMA,Rosa,150,Perú,"$68,450.00","189,000  ","132,300",64%,48%,10/9/2025
+Martel ,SS25/26,Nomotex,Remera ,,,Remera cuello redondo PIMA,Gris,100,Perú,"$68,450.00","189,000  ","132,300",64%,48%,10/9/2025
+Martel ,SS25/26,Nomotex,Remera ,,,Remera cuello redondo PIMA,Blanco,200,Perú,"$68,450.00","189,000  ","132,300",64%,48%,10/9/2025
+Martel ,SS25/26,Nomotex,Remera ,,,Remera cuerrlo redondo a rayas PIMA,Blanco,150,Perú,"$77,394.00","229,000  ","160,300",66%,52%,10/9/2025
+Martel ,SS25/26,Nomotex,Remera ,,,Remera cuerrlo redondo a rayas PIMA,Azul marino ,150,Perú,"$77,394.00","229,000  ","160,300",66%,52%,10/9/2025
+Martel ,SS25/26,Nomotex,Remera ,,,Polo Interlock PIMA,Blanco,200,Perú,"$83,353.00","269,000  ","188,300",69%,56%,10/9/2025
+Martel ,SS25/26,Nomotex,Remera ,,,Polo Interlock PIMA,Negro,200,Perú,"$83,353.00","269,000  ","188,300",69%,56%,10/9/2025
+Martel ,SS25/26,Nomotex,Remera ,,,Polo Interlock PIMA,Azul Marino ,200,Perú,"$83,353.00","269,000  ","188,300",69%,56%,10/9/2025
+Martel ,SS25/26,Nomotex,Remera ,,,Polo Interlock PIMA,Celeste,200,Perú,"$83,353.00","269,000  ","188,300",69%,56%,10/9/2025
+Martel ,SS25/26,Nomotex,Remera ,,,Polo Interlock PIMA,Verde,200,Perú,"$83,353.00","269,000  ","188,300",69%,56%,10/9/2025
+Wrangler,SS25/26,Cotton Club,Remera ,,,Stranger Things TEE ,Washed Black ,108,Bangladesh ,"$75,971.00","229,000  ","176,000",67%,57%,10/9/2025
+Wrangler,SS25/26,Cotton Club,Remera ,,,BRADLEY'S BIG BUY TEE,Washed Black ,108,Bangladesh ,"$75,971.00","229,000  ","176,000",67%,57%,10/9/2025
+Wrangler,SS25/26,Cotton Club,Remera ,,,HAWKINS HIGH TEE,Retro White,108,Bangladesh ,"$75,971.00","229,000  ","176,000",67%,57%,10/9/2025
+Wrangler,SS25/26,Cotton Club,Remera ,,,KEEP ON RUNNIN' TEE,Retro White,108,Bangladesh ,"$75,971.00","229,000  ","176,000",67%,57%,10/9/2025
+Wrangler,SS25/26,Cotton Club,Remera ,,,WSKQ REG FIT TEE ,Retro White,108,Bangladesh ,"$63,309.00","189,000  ","145,200",67%,56%,10/9/2025
+Wrangler,SS25/26,Cotton Club,Remera ,,,Stranger Things TEE ,Retro White,108,Bangladesh ,"$63,309.00","189,000  ","145,200",67%,56%,10/9/2025
+Martel ,SS25/26,TIMEKOL,Short ,,,Short de baño liso ,Rojo ,230,Bangladesh ,$7.84,"165,000  ","115,500",68%,52%,11/3/2025
+Martel ,SS25/26,TIMEKOL,Short ,,,Short de baño liso ,Verde Oliva ,230,Bangladesh ,$7.84,"165,000  ","115,500",68%,52%,11/3/2025
+Martel ,SS25/26,TIMEKOL,Short ,,,Short de baño liso ,Azul Marino ,230,Bangladesh ,$7.84,"165,000  ","115,500",68%,52%,11/3/2025
+Martel ,SS25/26,TIMEKOL,Short ,,,Short de baño estampado ,Rojo ,230,Bangladesh ,$8.12,"175,000  ","122,500",68%,54%,11/3/2025
+Martel ,SS25/26,TIMEKOL,Short ,,,Short de baño estampado ,Verde Oliva ,230,Bangladesh ,$8.12,"175,000  ","122,500",68%,54%,11/3/2025
+Martel ,SS25/26,TIMEKOL,Short ,,,Short de baño estampado ,Azul Marino ,230,Bangladesh ,$8.12,"175,000  ","122,500",68%,54%,11/3/2025
+Martel ,SS25/26,CAPRERA ,Saco,,,Blazer Sport - Slim fit de lino,Celeste Melange ,120,China,$36.40,"765,000  ","535,500",68%,52%,11/29/2025
+Martel ,SS25/26,CAPRERA ,Saco,,,Blazer Sport - Slim fit de lino,Azul Melange ,120,China ,$36.40,"765,000  ","535,500",68%,52%,11/29/2025
+Martel ,SS25/26,CAPRERA ,Saco,,,Blazer Sport - Slim fit de lino,Beige,120,China ,$36.40,"765,000  ","535,500",68%,52%,11/29/2025
+Martel ,SS25/26,CAPRERA ,Bermuda,,,Bermuda de lino ,Beige,150,China ,$9.10,"215,000  ","150,500",71%,58%,11/29/2025
+Martel ,SS25/26,CAPRERA ,Bermuda,,,Bermuda de lino ,Verde Oliva ,150,China,$9.10,"215,000  ","150,500",71%,58%,11/29/2025
+Martel ,SS25/26,CAPRERA ,Bermuda,,,Bermuda de lino ,Azul Marino ,150,China,$9.10,"215,000  ","150,500",71%,58%,11/29/2025
+Martel ,SS25/26,CAPRERA ,Pantalón,,,Pantalón Fit Slim ,Beige,150,China ,$14.00,"295,000  ","206,500",68%,53%,11/29/2025
+Martel ,SS25/26,CAPRERA ,Pantalón,,,Pantalón Fit Slim ,Verde Oliva ,150,China,$14.00,"295,000  ","206,500",68%,53%,11/29/2025
+Martel ,SS25/26,CAPRERA ,Pantalón,,,Pantalón Fit Slim ,Azul Marino ,150,China,$14.00,"295,000  ","206,500",68%,53%,11/29/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,848-849,Remera cuello redondo c/ bolsillo ,Verde,450,Bangladesh ,$6.30,"135,000  ","94,500",68%,53%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,848-849,Remera cuello redondo c/ bolsillo ,Gris,450,Bangladesh ,$6.30,"135,000  ","94,500",68%,53%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,848-849,Remera cuello redondo c/ bolsillo ,Rojo ,450,Bangladesh ,$6.30,"135,000  ","94,500",68%,53%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,848-849,Remera cuello redondo c/ bolsillo ,Celeste,450,Bangladesh ,$6.30,"135,000  ","94,500",68%,53%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,846-847,Remera cuello mao c/ botones ,Azul marino ,450,Bangladesh ,$7.56,"165,000  ","115,500",69%,54%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,846-847,Remera cuello mao c/ botones ,Crudo ,450,Bangladesh ,$7.56,"165,000  ","115,500",69%,54%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,858-859-860,Remera estampada,Rojo ,450,Bangladesh ,$5.32,"125,000  ","87,500",71%,57%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,858-859-860,Remera estampada,Amarillo,450,Bangladesh ,$5.32,"125,000  ","87,500",71%,57%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,858-859-860,Remera estampada,Verde Oliva ,450,Bangladesh ,$5.32,"125,000  ","87,500",71%,57%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,856-857,Remera con patch,Celeste,450,Bangladesh ,$6.30,"135,000  ","94,500",68%,53%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,856-857,Remera con patch,Crudo ,450,Bangladesh ,$6.30,"135,000  ","94,500",68%,53%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,850-851-852,Remera cuello redondo de piqué,Verde,450,Bangladesh ,$7.70,"169,000  ","118,300",69%,54%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,850-851-852,Remera cuello redondo de piqué,Celeste,450,Bangladesh ,$7.70,"169,000  ","118,300",69%,54%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,850-851-852,Remera cuello redondo de piqué,Amarillo ,450,Bangladesh ,$7.70,"169,000  ","118,300",69%,54%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,853-854-855,Polo de piqué efecto lavado ,Beige,450,Bangladesh ,$9.10,"210,000  ","147,000",71%,57%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,853-854-855,Polo de piqué efecto lavado ,Crudo ,450,Bangladesh ,$9.10,"210,000  ","147,000",71%,57%,12/15/2025
+Martel ,SS25/26,TIMEKOL,Remera ,,853-854-855,Polo de piqué efecto lavado ,Rojo ,450,Bangladesh ,$9.10,"210,000  ","147,000",71%,57%,12/15/2025
+Martel ,FW26,TIMEKOL,Sweater ,,,Sweater cuello redondo - Cashmere ,Tostado ,150,China,$18.90,"379,000  ","265,300",66%,50%,2/20/2026
+Martel ,FW26,TIMEKOL,Sweater ,,,Sweater cuello redondo - Cashmere ,Azul Marino ,150,China,$18.90,"379,000  ","265,300",66%,50%,2/20/2026
+Martel ,FW26,TIMEKOL,Sweater ,,,Sweater cuello v - Cashmere ,Tostado ,150,China,$19.46,"379,000  ","265,300",65%,49%,2/20/2026
+Martel ,FW26,TIMEKOL,Sweater ,,,Sweater cuello v - Cashmere ,Azul Marino ,150,China,$19.46,"379,000  ","265,300",65%,49%,2/20/2026
+Martel ,FW26,TIMEKOL,Sweater ,,,Sweater medio cierre - Cashmere,Tostado ,150,China,$22.39,"379,000  ","265,300",60%,41%,2/20/2026
+Martel ,FW26,TIMEKOL,Sweater ,,,Sweater medio cierre - Cashmere,Azul Marino ,150,China,$22.39,"379,000  ","265,300",60%,41%,2/20/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Frontier ,Dawn ,450,Bangladesh ,$20.53,"430,000  ","301,000",68%,52%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Greensboro ,Olympia ,450,Bangladesh ,$21.83,"459,000  ","321,300",68%,52%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Greensboro ,Tabacco Ice ,450,Bangladesh ,$21.23,"445,000  ","311,500",68%,52%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Wrancher ,Caviar Classic,450,Bangladesh ,$21.38,"449,000  ","314,300",68%,52%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Larston ,Dandelion Summer ,450,Bangladesh ,$20.37,"427,000  ","298,900",68%,52%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Larston ,Dawn ,450,Bangladesh ,$20.00,"420,000  ","294,000",68%,52%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Wrancher ,Florence Blue ,450,Bangladesh ,$20.05,"420,000  ","294,000",68%,52%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,High Rise 70s Flare ,Western Nightfall,450,Bangladesh ,$19.55,"410,000  ","287,000",68%,52%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,River ,Outlaw ,450,Bangladesh ,$21.77,"459,000  ","321,300",68%,53%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Texas Authentic ,Raven Ash,450,Bangladesh ,$21.77,"459,000  ","321,300",68%,53%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Texas Slim ,Harbor Blue ,450,Bangladesh ,$20.91,"439,000  ","307,300",68%,52%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Texas Slim ,Blue Jam ,450,Bangladesh ,$22.11,"465,000  ","325,500",68%,52%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Loose Boot,Harbor Blue ,450,Bangladesh ,$21.44,"450,000  ","315,000",68%,52%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Bermuda,,,13MWZ Short,Dawn ,295,Bangladesh ,$16.50,"349,000  ","244,300",68%,53%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Wrancher ,Harbor Blue ,295,Bangladesh ,$20.91,"439,000  ","307,300",68%,52%,3/5/2026
+Wrangler ,SS26/27,Radisson Garments ,Vaquero ,,,Wrapped 70s Flare,Hazy Horizon ,210,Bangladesh ,$21.20,"445,000  ","311,500",68%,52%,3/5/2026
+Wrangler ,SS26/27,Pacific Jeans ,Vaquero ,,,Loose Straight ,Dove Wing,174,Bangladesh ,$19.96,"419,000  ","293,300",68%,52%,3/5/2026
+Wrangler ,SS26/27,KENPARK,Vaquero ,,,Frontier ,Storm Cloud ,150,Bangladesh ,$19.72,"415,000  ","290,500",68%,52%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,Daren Reg Straight ,Strong Hand,450,Bangladesh ,$19.35,"409,000  ","286,300",68%,53%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,Daren Reg Straight ,Noble Blue ,450,Bangladesh ,$18.58,"409,000  ","286,300",69%,55%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,Brooklyn Classic Straight ,Jasper ,450,Bangladesh ,$20.31,"429,000  ","300,300",68%,53%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,West Regular Straight ,Fawn ,450,Bangladesh ,$19.14,"409,000  ","286,300",68%,53%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,West Regular Straight ,Indigo Warp,450,Bangladesh ,$15.76,"339,000  ","237,300",68%,54%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,West Regular Straight ,Percy ,450,Bangladesh ,$20.19,"429,000  ","300,300",68%,53%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,Luke Slim Taper ,Rinse ,450,Bangladesh ,$13.49,"319,000  ","223,300",71%,58%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,Rider Slim Straight ,Black Rinse ,450,Bangladesh ,$14.33,"319,000  ","223,300",69%,55%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,Rider Slim Straight ,Hyperion ,450,Bangladesh ,$17.68,"379,000  ","265,300",68%,53%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,Rider Slim Straight ,Spirited,450,Bangladesh ,$18.13,"379,000  ","265,300",67%,52%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,Breese Flare ,Out of time ,450,Bangladesh ,$20.31,"429,000  ","300,300",68%,53%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,Marion ,Afternoon Song ,450,Bangladesh ,$18.40,"389,000  ","272,300",68%,53%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,Scarlett High ,With Envy ,450,Bangladesh ,$18.25,"389,000  ","272,300",68%,53%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,Breese Boot ,Darker Days ,294,Bangladesh ,$18.39,"389,000  ","272,300",68%,53%,3/5/2026
+LEE,SS26/27,KENPARK,Vaquero ,,,Mid Rise Jort ,Tinted Blue ,234,Bangladesh ,$17.75,"379,000  ","265,300",68%,53%,3/5/2026
+Martel ,FW26,TIMEKOL,Pantalón ,,,Pantalón clásico Slim Fit ,Beige,400,Bangladesh ,$16.10,"325,000  ","227,500",66%,50%,3/20/2026
+Martel ,FW26,TIMEKOL,Pantalón ,,,Pantalón clásico Slim Fit ,Negro,400,Bangladesh ,$16.10,"325,000  ","227,500",66%,50%,3/20/2026
+Martel ,FW26,TIMEKOL,Pantalón ,,,Pantalón clásico Slim Fit ,Azul Marino ,400,Bangladesh ,$16.10,"345,000  ","241,500",68%,53%,3/20/2026
+Martel ,FW26,TIMEKOL,Pantalón ,,,Pantalón clásico Regular Fit ,Beige,400,Bangladesh ,$16.38,"345,000  ","241,500",68%,53%,3/20/2026
+Martel ,FW26,TIMEKOL,Pantalón ,,,Pantalón clásico Regular Fit ,Negro,400,Bangladesh ,$16.38,"345,000  ","241,500",68%,53%,3/20/2026
+Martel ,FW26,TIMEKOL,Pantalón ,,,Pantalón clásico Regular Fit ,Azul Marino ,400,Bangladesh ,$16.38,"345,000  ","241,500",68%,53%,3/20/2026
+Martel ,FW26,TIMEKOL,Pantalón ,,,Pantalón Slim fit c/ media goma ,Beige,400,Bangladesh ,$15.96,"345,000  ","241,500",69%,54%,3/20/2026
+Martel ,FW26,TIMEKOL,Pantalón ,,,Pantalón Slim fit c/ media goma ,Negro,400,Bangladesh ,$15.96,"345,001  ","241,501",69%,54%,3/20/2026
+Martel ,FW26,TIMEKOL,Pantalón ,,,Pantalón Slim fit c/ media goma ,Azul Marino ,400,Bangladesh ,$15.96,"345,002  ","241,501",69%,54%,3/20/2026
+Martel ,FW26,TIMEKOL,Abrigo ,,,Campera bómber de Nylon ,Negro ,200,China,$23.66,"439,000  ","307,300",63%,46%,3/20/2026
+Martel ,FW26,TIMEKOL,Abrigo ,,,Campera bómber de Nylon ,Verde Oliva ,200,China,$23.66,"439,000  ","307,300",63%,46%,3/20/2026
+Martel ,FW26,TIMEKOL,Abrigo ,,,Campera bómber suede,Tostado ,200,China,$23.38,"489,000  ","342,300",67%,52%,3/20/2026
+Martel ,FW26,TIMEKOL,Abrigo ,,,Campera bómber suede,Gris ,200,China,$23.38,"489,000  ","342,300",67%,52%,3/20/2026
+Wrangler ,SS26/27,AGI,Chaleco ,,,Country Estate Vest,Pale denim ,32,Pakistan ,$16.07,"339,000  ","237,300",68%,53%,3/20/2026
+Wrangler ,SS26/27,AGI,Short ,,,Countri Estate Short,Pale denim ,32,Pakistan ,$11.73,"245,000  ","171,500",67%,52%,3/20/2026
+Martel ,FW26,CAPRERA ,Abrigo ,,,Tapado clásico ,Negro,100,China ,$39.90,"859,000  ","601,300",68%,54%,Abril
+Martel ,FW26,CAPRERA ,Abrigo ,,,Tapado clásico ,Gris,100,China ,$39.90,"859,000  ","601,300",68%,54%,Abril
+Martel ,FW26,CAPRERA ,Abrigo ,,,Tapado clásico ,Azul medio ,100,China ,$39.90,"859,000  ","601,300",68%,54%,Abril
+Martel ,FW26,CAPRERA ,Saco ,,,Blazer Regular,Gris,100,China ,$36.40,"765,000  ","535,500",68%,52%,Abril
+Martel ,FW26,CAPRERA ,Saco ,,,Blazer Regular,Marrón,100,China ,$36.40,"765,000  ","535,500",68%,52%,Abril
+Martel ,FW26,CAPRERA ,Saco ,,,Blazer Regular,Azul Marino ,100,China ,$36.40,"765,000  ","535,500",68%,52%,Abril
+Martel ,FW26,CAPRERA ,Saco ,,,Blazer Slim,Gris,100,China ,$33.60,"579,000  ","405,300",61%,42%,Abril
+Martel ,FW26,CAPRERA ,Saco ,,,Blazer Slim,Negro,100,China ,$33.60,"579,000  ","405,300",61%,42%,Abril
+Martel ,FW26,CAPRERA ,Saco ,,,Blazer Slim,Azul Marino ,100,China ,$33.60,"579,000  ","405,300",61%,42%,Abril
+Martel ,FW26,CAPRERA ,Pantalón,,,Pantalón Slim Fit ,Negro,150,China ,$14.00,"269,000  ","188,300",65%,48%,Abril
+Martel ,FW26,CAPRERA ,Pantalón,,,Pantalón Slim Fit ,Azul Marino ,150,China ,$14.00,"269,000  ","188,300",65%,48%,Abril
+Martel ,FW26,FLOW TRADER ,Abrigo ,,,Campera Puffer ,Negro,100,China ,$12.60,"289,000  ","202,300",70%,56%,Abril
+Martel ,FW26,FLOW TRADER ,Abrigo ,,,Campera Puffer ,Azul marino ,100,China ,$12.60,"289,000  ","202,300",70%,56%,Abril
+Martel ,FW26,FLOW TRADER ,Abrigo ,,,Campera Puffer ,Verde Oliva ,100,China ,$12.60,"289,000  ","202,300",70%,56%,Abril
+Martel ,FW26,FLOW TRADER ,Abrigo ,,,Campera leñador ,Marrón ,80,China ,$42.00,"879,000  ","615,300",68%,52%,Abril
+Martel ,FW26,LA MARTINGALA ,Abrigo ,,,Campera clásica ,Beige,300,China ,$25.76,"539,000  ","377,300",68%,52%,Abril
+Martel ,FW26,LA MARTINGALA ,Abrigo ,,,Campera clásica ,Azul Marino ,300,China ,$25.76,"539,000  ","377,300",68%,52%,Abril
+Martel ,FW26,LA MARTINGALA ,Abrigo ,,,Campera clásica ,Negro ,300,China ,$25.76,"539,000  ","377,300",68%,52%,Abril
+Martel ,FW26,LA MARTINGALA ,Sweater ,,,Cárdigan c/ cierre,Negro,250,China ,$12.46,"259,000  ","181,300",67%,52%,Abril
+Martel ,FW26,LA MARTINGALA ,Sweater ,,,Cárdigan c/ cierre,Gris ,250,China ,$12.46,"259,000  ","181,300",67%,52%,Abril
+Martel ,FW26,LA MARTINGALA ,Abrigo ,,,Campera c/ botones ,Azul,150,China ,$37.80,"759,000  ","531,300",66%,50%,Abril
+Martel ,FW26,LA MARTINGALA ,Abrigo ,,,Campera c/ botones ,Negro,150,China ,$37.80,"759,000  ","531,300",66%,50%,Abril
+Martel ,FW26,LA MARTINGALA ,Abrigo ,,,Trench clásico ,Azul marino ,150,China ,$51.66,"879,000  ","615,300",60%,41%,Abril
+Martel ,FW26,LA MARTINGALA ,Abrigo ,,,Trench clásico ,Beige ,150,China ,$51.66,"879,000  ","615,300",60%,41%,Abril
+Wrangler ,SS26/27,BDC,Bermuda,,,Low Rise Jort ,Stormy dust ,124,Bangladesh ,$11.49,"245,000  ","171,500",68%,53%,Abril
+Wrangler ,SS26/27,Cotton Club,Remera ,,,Ringer Tee ,Worn White ,122,Bangladesh ,$6.55,"139,000  ","97,300",68%,53%,Abril
+Wrangler ,SS26/27,Cotton Club,Polo ,,,Knitted Polo Shirt ,Crudo ,52,Bangladesh ,$13.34,"279,000  ","195,300",67%,52%,Abril
+Wrangler ,SS26/27,Dekko,Camisa,,,Wrange Shirt ,Harbor Blue ,26,Bangladesh ,$23.90,"519,000  ","363,300",69%,54%,Abril
+Wrangler ,SS26/27,Pacific Jeans ,Blusa ,,,Pleated Corset top ,Lone Rider ,20,Bangladesh ,$19.08,"410,000  ","287,000",68%,53%,Abril
+Wrangler ,SS26/27,KENPARK,Campera ,,,Classic Jacket,Harbor Blue ,6,Bangladesh ,$41.75,"879,000  ","615,300",68%,53%,Abril
+LEE,SS26/27,KENPARK,Vaquero ,,,Bresse Boot ,Valiant Blue ,450,Bangladesh ,$19.08,"409,000  ","286,300",68%,53%,Abril
+LEE,SS26/27,KENPARK,Vaquero ,,,Bresse Boot ,Afternoon Song ,450,Bangladesh ,$17.40,"369,000  ","258,300",68%,53%,Abril
+Wrangler ,FW26,,Pantalón,,,Windward Utility Pant,Gris,400,,$13.91,"319,000  ","223,300",70%,56%,En Stock
+Wrangler ,FW26,,Pantalón,,,Windward Utility Pant,Negro,400,,$13.91,"319,000  ","223,300",70%,56%,En Stock
+Wrangler ,FW26,,Pantalón,,,Windward Utility Pant,Beige,400,,$13.91,"319,000  ","223,300",70%,56%,En Stock
+Wrangler ,FW26,,Camisa,,,Salida Shirt,Azul ,400,,$15.33,"329,000  ","230,300",68%,53%,En Stock
+Wrangler ,FW26,,Camisa,,,Salida Shirt,Verde,400,,$15.33,"329,000  ","230,300",68%,53%,En Stock
+Wrangler ,FW26,,Camisa,,,Campsite Shirt ,Verde,400,,$14.39,"309,000  ","216,300",68%,53%,En Stock
+Wrangler ,FW26,MODAPIEL ,Abrigo ,,,Campera clásica suede ,Marrón ,40,China ,$27.49,"589,000  ","412,300",68%,53%,Enero
+Wrangler ,FW26,MODAPIEL ,Abrigo ,,,Campera Capitoneada ,Marrón oscuro ,64,China ,$27.49,"589,000  ","412,300",68%,53%,Enero
+Wrangler ,FW26,MODAPIEL ,Abrigo ,,,Campera Capitoneada ,Beige,64,China ,$27.49,"619,000  ","433,300",70%,56%,Enero
+Wrangler,FW26,MODAPIEL ,Abrigo ,,,Campera Sherpa ,Marrón ,64,China ,$27.49,"659,000  ","461,300",72%,58%,Enero
+Wrangler ,FW26,MODAPIEL ,Abrigo ,,,Biker faux leather ,Marrón ,40,China ,$23.36,"529,000  ","370,300",70%,56%,Enero
+Wrangler ,FW26,MODAPIEL ,Abrigo ,,,Campera Sherpa cropped ,Negro ,40,China ,$26.12,"549,000  ","384,300",68%,52%,Enero
+Wrangler ,FW26,MODAPIEL ,Abrigo ,,,Abrigo estampado ,Rojo ,40,China ,$21.99,"519,000  ","363,300",71%,58%,Enero
+LEE,FW26,MODAPIEL ,Abrigo ,,,Campera Capitoneada ,Negra,50,China ,$23.36,"519,000  ","363,300",69%,55%,Enero
+LEE,FW26,MODAPIEL ,Abrigo ,,,Campera bomber ,Beige,60,China ,$20.61,"459,000  ","321,300",69%,55%,Enero
+LEE,FW26,MODAPIEL ,Abrigo ,,,Campera bomber ,Azul marino ,60,China ,$20.61,"459,000  ","321,300",69%,55%,Enero
+LEE,FW26,MODAPIEL ,Abrigo ,,,Campera clásica ,Gris Oscuro ,50,China ,$23.36,"509,000  ","356,300",69%,54%,Enero
+LEE,FW26,MODAPIEL ,Abrigo ,,,Campera clásica ,Café ,50,China ,$23.36,"509,000  ","356,300",69%,54%,Enero
+LEE,FW26,MODAPIEL ,Abrigo ,,,Campera combinada ,Gris oscuro ,40,China ,$26.12,"559,000  ","391,300",68%,53%,Enero
+LEE,FW26,MODAPIEL ,Abrigo ,,,Hoodie embosed logo ,Gris oscuro ,56,China,$9.61,"229,000  ","160,300",71%,58%,Enero
+LEE,FW26,MODAPIEL ,Abrigo ,,,Hoodie embosed logo ,Tostado ,56,China,$9.61,"229,000  ","160,300",71%,58%,Enero
+LEE,FW26,MODAPIEL ,Abrigo ,,,Hoodie combi ,Gris melange,56,China ,$9.61,"229,000  ","160,300",71%,58%,Enero
+LEE,FW26,MODAPIEL ,Abrigo ,,,Hoodie combinado ,Beige ,56,China ,$9.61,"229,000  ","160,300",71%,58%,Enero
+LEE,FW26,MODAPIEL ,Sweater ,,,Sweater medio cierre ,Negro ,60,China ,$12.36,"259,000  ","181,300",68%,52%,Enero
+LEE,FW26,MODAPIEL ,Sweater ,,,Sweater medio cierre ,Beige ,60,China ,$12.36,"259,000  ","181,300",68%,52%,Enero
+LEE,FW26,MODAPIEL ,Abrigo ,,,Bomber faux leather ,Beige,40,China ,$21.98,"469,000  ","328,300",68%,53%,Enero
+LEE,FW26,MODAPIEL ,Abrigo ,,,Campera con sherpa ,Negro ,40,China ,$26.11,"549,000  ","384,300",68%,52%,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,High Rise Skinny ,Stl ,104,Chile,$19.26,"399,000  ",,67%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,High Rise Skinny ,Bkw,104,Chile,$19.26,"399,000  ",,67%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Women Slim ,Str,130,Chile,$19.26,"419,000  ",,69%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Women Slim ,Blue ,130,Chile,$19.26,"419,000  ",,69%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Women Straight ,Blue,130,Chile,$19.26,"419,000  ",,69%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Women Straight ,Bks,130,Chile,$19.26,"419,000  ",,69%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Texas Authentic ,Stw,184,Chile,$22.62,"459,000  ",,66%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Texas Authentic ,Bko,184,Chile,$20.27,"459,000  ",,70%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Texas Authentic ,DST,184,Chile,$22.46,"459,000  ",,67%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Greensboro ,Ms,184,Chile,$23.44,"469,000  ",,66%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Greensboro ,Str,184,Chile,$23.24,"469,000  ",,66%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Greensboro ,Raw,184,Chile,$18.93,"469,000  ",,73%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Greensboro ,Bkg,184,Chile,$22.31,"469,000  ",,68%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Larston ,Dsw,184,Chile,$23.04,"459,000  ",,66%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Larston ,Blw,184,Chile,$22.07,"459,000  ",,67%,,Enero
+Wrangler ,FW26,Jeans Blue ,Vaquero ,,,Larston ,Lb,184,Chile,$23.33,"459,000  ",,65%,,Enero
+LEE,FW26,Jeans Blue ,Vaquero ,,,Brooklyn Classic Straight ,Mib Blue,130,Chile,$23.30,"459,000  ",,65%,,Enero
+LEE,FW26,Jeans Blue ,Vaquero ,,,Brooklyn Classic Straight ,Black,130,Chile,$21.46,"459,000  ",,68%,,Enero
+LEE,FW26,Jeans Blue ,Vaquero ,,,Brooklyn Classic Straight ,Light Blue,130,Chile,$21.98,"459,000  ",,67%,,Enero
+LEE,FW26,Jeans Blue ,Vaquero ,,,Luke ,Black,130,Chile ,$23.42,"479,000  ",,67%,,Enero
+LEE,FW26,Jeans Blue ,Vaquero ,,,Daren Reg Straight ,Blue Wash,130,Chile ,$22.92,"469,000  ",,67%,,Enero
+LEE,FW26,Jeans Blue ,Vaquero ,,,Daren Reg Straight ,Stone,130,Chile ,$24.20,"469,000  ",,65%,,Enero
+LEE,FW26,Jeans Blue ,Vaquero ,,,Daren Reg Straight ,Black,130,Chile ,$21.52,"469,000  ",,69%,,Enero
+LEE,SS26/27,SNOWTEX OUTERWEAR LTD,Vaquero ,Marilyn Monroe Collab,,HIGH RISE JEAN ,Rinse,220,Bangladesh ,$19.08,"449,000  ",,71%,,Julio
+LEE,SS26/27,SNOWTEX OUTERWEAR LTD,Vaquero ,Marilyn Monroe Collab,,HIGH RISE JEAN ,Blue Crush,150,Bangladesh ,$23.18,"449,000  ",,65%,,Julio
+LEE,SS26/27,SNOWTEX OUTERWEAR LTD,Campera,Marilyn Monroe Collab,,STORM RIDER JACKET,Rinse,48,Bangladesh ,$46.21,"759,000  ",,59%,,Julio
+LEE,SS26/27,SNOWTEX OUTERWEAR LTD,Campera,Marilyn Monroe Collab,,STORM RIDER JACKET,Blue Crush,54,Bangladesh ,$47.57,"759,000  ",,57%,,Julio
+LEE,SS26/27,RADISSON GARMENTS LIMITED,Camisa,Marilyn Monroe Collab,,BOYFRIEND SHIRT,White Star,100,Bangladesh ,$16.41,"339,000  ",,67%,,Julio
+LEE,SS26/27,RADISSON GARMENTS LIMITED,Camisa,Marilyn Monroe Collab,,BOYFRIEND SHIRT,Peach Bud,100,Bangladesh ,$16.41,"339,000  ",,67%,,Julio
+LEE,SS26/27,"Qingdao Snpiec Fashions Co., Ltd.",Vestido ,Marilyn Monroe Collab,,Halter Dress,Ice storm,43,China ,$42.17,"859,000  ",,67%,,Julio
+LEE,SS26/27,Babylon Garments Ltd,Vestido ,Marilyn Monroe Collab,,Halter Dress,Black Beauty ,48,Bangladesh ,$31.44,"649,000  ",,67%,,Julio
+LEE,SS26/27,"HANGZHOU SANJING KNITTING, Co. LTD",Cárdigan ,Marilyn Monroe Collab,,SWEATER CARDIGAN,TURTLEDOVE HEATHER,60,China ,$30.04,"609,000  ",,66%,,Julio
+LEE,SS26/27,MASCO INDUSTRIES LIMITED COMPOSITE KNIT GARMENTS,Remera ,Marilyn Monroe Collab,,GIRLFRIEND FIT TEE ,Star White,150,Bangladesh ,$11.13,"229,000  ",,67%,,Julio
+LEE,SS26/27,MASCO INDUSTRIES LIMITED COMPOSITE KNIT GARMENTS,Remera ,Marilyn Monroe Collab,,GIRLFRIEND FIT TEE ,Peach Bud,150,Bangladesh ,$11.13,"229,000  ",,67%,,Julio
+LEE,SS26/27,MASCO INDUSTRIES LIMITED COMPOSITE KNIT GARMENTS,Remera ,Marilyn Monroe Collab,,GIRLFRIEND FIT TEE ,Black Beauty,150,Bangladesh ,$11.13,"229,000  ",,67%,,Julio
+LEE,SS26/27,MEGHNA KNIT COMPOSITE LTD,Remera ,Marilyn Monroe Collab,,BABY TEE,Red/White Stripe,100,Bangladesh ,$7.91,"189,000  ",,72%,,Julio
+LEE,SS26/27,MEGHNA KNIT COMPOSITE LTD,SweatShirt,Marilyn Monroe Collab,,CREW SWEATSHIRT,WHITE STAR ,102,Bangladesh ,$19.71,"399,000  ",,66%,,Julio
+LEE,SS26/27,MEGHNA KNIT COMPOSITE LTD,SweatShirt,Marilyn Monroe Collab,,CREW SWEATSHIRT,MID GREY MELE,102,Bangladesh ,$19.71,"399,000  ",,66%,,Julio
+LEE,SS26/27,MEGHNA KNIT COMPOSITE LTD,SweatShirt,Marilyn Monroe Collab,,CREW SWEATSHIRT,BLACK BEAUTY ,102,Bangladesh ,$19.71,"399,000  ",,66%,,Julio
+LEE,SS26/27,MEGHNA KNIT COMPOSITE LTD,SweatShirt,Marilyn Monroe Collab,,CREW SWEATSHIRT,HIGH RISK RED ,76,Bangladesh ,$19.71,"399,000  ",,66%,,Julio
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Sweater cuello polo ,Marrón,100,China ,$10.92,"245,000  ","171,500",70%,55%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Sweater cuello polo ,Beige,100,China ,$10.92,"245,000  ","171,500",70%,55%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Sweater cuello polo ,Azul Marino ,100,China ,$10.92,"245,000  ","171,500",70%,55%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Sweater escote en V ,Gris,200,China ,$10.64,"250,000  ","175,000",71%,57%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Sweater escote en V ,Grafitto ,200,China ,$10.64,"250,000  ","175,000",71%,57%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Sweater escote en V ,Negro,200,China ,$10.64,"250,000  ","175,000",71%,57%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Sweater cuello redondo ,Bordó,200,China ,$10.64,"250,000  ","175,000",71%,57%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Sweater cuello redondo ,Celeste,200,China ,$10.64,"250,000  ","175,000",71%,57%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Sweater cuello redondo ,Motaza,200,China ,$10.64,"250,000  ","175,000",71%,57%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Sweater medio cierre ,Verde Botella,200,China ,$14.00,"285,000  ","199,500",67%,51%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Sweater medio cierre ,Azul Marino ,200,China ,$14.00,"285,000  ","199,500",67%,51%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Sweater medio cierre ,Ladrillo ,200,China ,$14.00,"285,000  ","199,500",67%,51%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Chaleco cuello V ,Negro,200,China ,$11.06,"220,000  ","154,000",66%,50%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Chaleco cuello V ,Beige,200,China ,$11.06,"220,000  ","154,000",66%,50%,Marzo 
+Martel ,FW26,FLOW TRADER ,Sweater ,,,Chaleco cuello V ,Azul,200,China ,$11.06,"220,000  ","154,000",66%,50%,Marzo 
+Martel ,FW26,FLOW TRADER ,Abrigo ,,,Chaleco doble faz ,Azul marino ,150,China ,$11.90,"249,000  ","174,300",68%,52%,Marzo 
+Martel ,FW26,FLOW TRADER ,Abrigo ,,,Chaleco doble faz ,Azul marino ,150,China ,$11.90,"249,000  ","174,300",68%,52%,Marzo 
+Martel ,FW26,LA MARTINGALA ,Accesorio ,,,Cinto trenzado ,Negro,300,China ,$6.86,"159,000  ","111,300",71%,57%,Marzo 
+Martel ,FW26,LA MARTINGALA ,Accesorio ,,,Cinto trenzado ,Azul Marino ,300,China ,$6.86,"159,000  ","111,300",71%,57%,Marzo 
+Martel ,FW26,LA MARTINGALA ,Accesorio ,,,Cinto trenzado ,Verde Oliva ,300,China ,$6.86,"159,000  ","111,300",71%,57%,Marzo 
+Martel ,FW26,LA MARTINGALA ,Accesorio ,,,Necesaire Ecocuero ,Negro ,300,China ,$10.64,"219,000  ","153,300",67%,51%,Marzo 
+Martel ,FW26,LA MARTINGALA ,Accesorio ,,,Mochila Ecocuero ,Negro ,200,China ,$20.16,"389,000  ","272,300",65%,48%,Marzo 
+Martel ,FW26,LA MARTINGALA ,Accesorio ,,,Cinto de cuero ,Tostado ,300,India,$9.10,"225,000  ","157,500",72%,60%,Marzo 
+Martel ,FW26,LA MARTINGALA ,Accesorio ,,,Cinto de cuero ,Marrón,300,India,$9.10,"225,000  ","157,500",72%,60%,Marzo 
+Martel ,FW26,LA MARTINGALA ,Accesorio ,,,Cinto de cuero ,Negro,300,India,$9.10,"225,000  ","157,500",72%,60%,Marzo 
+Wrangler ,FW27,SDC,Camisa,FW27 - Lanzamiento,,1 PKT SHIRT,KANGAROO PLAID,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Dekko,Pantalón,FW27 - Lanzamiento,,DOUBLE KNEE CARPENTER,JET BLACK 19-0303 TCX,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Dekko,Camisa,FW27 - Lanzamiento,,EXAGGERATED WESTERN,WORN LEGACY,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Sainty,Campera,FW27 - Lanzamiento,,FAUX LEATHER WRANGE,MEDIUM BROWN,150,Bangladesh ,,,,,,
+Wrangler ,FW27,US apparel,Pantalón,FW27 - Lanzamiento,,FRONTIER,DUNE BREAK,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Pantalón,FW27 - Lanzamiento,,GREENSBORO,DUSTY OLIVE,400,Bangladesh ,,,,,,
+Wrangler ,FW27,US Apparel,Vaquero ,FW27 - Lanzamiento,,GREENSBORO,VEIL,400,Bangladesh ,,,,,,
+Wrangler ,FW27,US Apparel,Vaquero ,FW27 - Lanzamiento,,GREENSBORO,IRON SMOKE,400,Bangladesh ,,,,,,
+Wrangler ,FW27,US Apparel,Vaquero ,FW27 - Lanzamiento,,GREENSBORO,FROZEN NIGHT,400,Bangladesh ,,,,,,
+Wrangler ,FW27,US Apparel,Vaquero ,FW27 - Lanzamiento,,GREENSBORO,MIST,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,GREENSBORO COSMIC BLUE,COSMIC BLUE,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Pantalón,FW27 - Lanzamiento,,GREENSBORO NAVY,NAVY,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,LARSTON SLIM TAPER JEAN,MOONLIT,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,LARSTON SLIM TAPER JEAN,LIGHTNING,300,Bangladesh ,,,,,,
+Wrangler ,FW27,"BDC (Fit sample) 
+US apparel (SMS)",Pantalón,FW27 - Lanzamiento,,PEAKED YOKE CANYON,WORN LEGACY,200,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,TEXAS - AUTHENTIC STRAIGHT,LIGHTNING,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,TEXAS - AUTHENTIC STRAIGHT,TEXAS SKY,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,TEXAS - AUTHENTIC STRAIGHT,LOWTIDE,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,TEXAS SLIM - AUTHENTIC SLIM,MOONLIT,400,Bangladesh ,,,,,,
+Wrangler ,FW27,US Apparel,Vaquero ,FW27 - Lanzamiento,,TEXAS SLIM - AUTHENTIC SLIM,SUN LIT,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Newage,Camisa,FW27 - Lanzamiento,,WESTERN SHIRT,SOFT BROWN PLAID,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Radisson Garment,Camisa,FW27 - Lanzamiento,,WESTERN SHIRT,HEATHERED INDIGO PLAID,400,Bangladesh ,,,,,,
+Wrangler ,FW27,US APPAREL,Pantalón,FW27 - Lanzamiento,,WRANCHER,GLACIER BLUE,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Snowtex,Campera,FW27 - Lanzamiento,,WRANGE COAT,CHOCOLATE TORTE 19-1109 TCX,150,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,LARSTON SLIM TAPER JEAN,TEXAS SKY,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,FRONTIER RELAXED STRAIGHT,MORNING WASH,400,Bangladesh ,,,,,,
+Wrangler ,FW27,US Apparel,Vaquero ,FW27 - Lanzamiento,,FRONTIER RELAXED STRAIGHT,STARLIT,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,"LOOSE STRAIGHT WITH WESTERN DOUBLE KNEE
+
+INDIGO DOBBY",DARK INDIGO,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,LOOSE STRAIGHT,HORSEPOWER PRINT,300,Bangladesh ,,,,,,
+Wrangler ,FW27,AM,Vaquero ,FW27 - Lanzamiento,,SLIM SEAMED JACKET,DARK ORBIT,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,SHERPA LINED ANTI-FIT JACKET,NIGHT SKY,150,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,SHERPA LINED CLASSIC JACKET,ORION,150,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,REG FIT LS POLO - D2,BLACK,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,REG FIT LS POLO - D2,CHOCOLATE TORTE,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,REG FIT LS POLO - D2,ROSIN,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,REG FIT LS POLO - D2,BERING SEA,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,REG FIT SS POLO - D1,CHOCOLATE TORTE,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Sunten,Remera ,FW27 - Lanzamiento,,REG FIT CORE SWEATER - D2,DARK SAPPHIRE,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Sunten,Remera ,FW27 - Lanzamiento,,REG FIT CORE SWEATER - D2,CHOCOLATE TORTE,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,HEAVYWEIGHT TEE,NAVY,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,HEAVYWEIGHT TEE,VINTAGE WHITE,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,HEAVYWEIGHT TEE,BLACK,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,CJ POCKET TEE,FADED BLACK,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,CJ POCKET TEE,WORN WHITE,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,SIGN OFF HOODIE,FADED BLACK,200,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,SIGN OFF CREW,NAVY,200,Bangladesh ,,,,,,
+Wrangler ,FW27,Cotton Club,Remera ,FW27 - Lanzamiento,,SIGN OFF CREW,BLACK,200,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,MR RAINBOW FLARE,OFF TO THE RACES,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,RAINBOW FLARE,DARK BLACK,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,SIENNA,NIGHTSHADE,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,WRANCHER,TIERRA TINGE,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,LOOSE STRAIGHT,HORSEPOWER PRINT,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Kenpark,Vaquero ,FW27 - Lanzamiento,,MID-RISE RELAXED,IMPERIAL BLUE,400,Bangladesh ,,,,,,
+Wrangler ,FW27,AM,Vaquero ,FW27 - Lanzamiento,,SLIM SEAMED JACKET,DARK ORBIT,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Radisson Casual,Vaquero ,FW27 - Lanzamiento,,SUPER JACKET,COWBOY FADE,400,Bangladesh ,,,,,,
+Wrangler ,FW27,Sunten,Sweater ,FW27 - Lanzamiento,,BALLOON SLV SWEATER,DAHLIA,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Sunten,Sweater ,FW27 - Lanzamiento,,BALLOON SLV SWEATER,BLACK,300,Bangladesh ,,,,,,
+Wrangler ,FW27,Sunten,Sweater ,FW27 - Lanzamiento,,WESTERN CARDIGAN,PEBBLE,200,Bangladesh ,,,,,,
+Wrangler ,FW27,Sunten,Sweater ,FW27 - Lanzamiento,,WESTERN CARDIGAN,POTENT PURPLE,200,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,GIRLFRIEND FIT SS TEE,CHILI PEPPER,300,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,GIRLFRIEND FIT SS TEE,FADED BLACK,300,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,GIRLFRIEND FIT SS TEE,WORN WHITE,300,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,OVERSIZED FIT SS TEE,JET BLACK,300,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,REGULAR FIT SS RINGER TEE,KEEPSAKE LILAC,300,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,REGULAR FIT SS RINGER TEE,DAHLIA,300,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,REGULAR FIT SS TEE,WORN WHITE,300,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,REGULAR FIT SS TEE,FADED BLACK,300,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,SHRUNKEN BND SS TEE,EGRET,300,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,SHRUNKEN BND SS TEE,BLACK BEAUTY,300,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,SHRUNKEN BND SS TEE,JET BLACK,300,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,SHRUNKEN BND SS TEE,EGRET,300,Bangladesh ,,,,,,
+Wrangler ,FW27,COTTON CLUB,Remera ,FW27 - Lanzamiento,,SHRUNKEN BND SS TEE,CHILI PEPPER,300,Bangladesh ,,,,,,
