@@ -1,319 +1,783 @@
-// main.js — carga CSV, renderiza tarjetas, tabla y gráficos
-const DEFAULT_CSV = '/Producto%20terminado%20FENIX%20S.A.csv';
-
-const selectors = {
-  search: document.getElementById('search'),
-  reload: document.getElementById('reload'),
-  fileInput: document.getElementById('fileInput'),
-  tableBody: document.getElementById('tableBody'),
-  cardSkus: document.getElementById('card-skus'),
-  cardUnits: document.getElementById('card-units'),
-  cardImported: document.getElementById('card-imported'),
-  topArrivals: document.getElementById('topArrivals'),
-  restArrivals: document.getElementById('restArrivals'),
-  restArrivalsWrap: document.getElementById('restArrivalsWrap'),
-  toggleRest: document.getElementById('toggleRest'),
-  topArrivalsWrap: document.getElementById('topArrivalsWrap'),
-  toggleTop: document.getElementById('toggleTop'),
-  gradientTop: document.getElementById('gradientTop'),
+const CONFIG = {
+  supabaseUrl: "https://gwzllatcxxrizxtslkeh.supabase.co",
+  supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3emxsYXRjeHhyaXp4dHNsa2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1OTkxNjksImV4cCI6MjA4NzE3NTE2OX0.PAp7RH822TpIr9IMyzh7LbtgsZNiU7d37sFKU5GgtYg",
+  table: "Import",
+  maxRows: 5000,
 };
 
-let rawData = [];
-let originChart = null;
-let categoryChart = null;
+const state = {
+  allRows: [],
+  fields: null,
+  dateFormat: "AUTO",
+  currentRows: [],
+  currentAnalysis: null,
+  previewColumns: [],
+  previewRows: [],
+  rawExpanded: false,
+};
 
-function safeNumber(v){
-  if (v == null) return 0;
-  // Remove currency chars, spaces and thousands separators
-  const cleaned = String(v).replace(/[^0-9\-,.]/g,'').replace(/\s+/g,'').replace(/,/g,'');
-  const n = parseFloat(cleaned);
-  return Number.isFinite(n) ? n : 0;
+const els = {
+  statusBox: document.getElementById("statusBox"),
+  refreshBtn: document.getElementById("refreshBtn"),
+  exportArrivalsBtn: document.getElementById("exportArrivalsBtn"),
+  exportRawBtn: document.getElementById("exportRawBtn"),
+  toggleRawBtn: document.getElementById("toggleRawBtn"),
+  rawCollapse: document.getElementById("rawCollapse"),
+  rawSection: document.getElementById("rawSection"),
+  brandFilter: document.getElementById("brandFilter"),
+  providerFilter: document.getElementById("providerFilter"),
+  categoryFilter: document.getElementById("categoryFilter"),
+  statusFilter: document.getElementById("statusFilter"),
+  sortFilter: document.getElementById("sortFilter"),
+  lastSync: document.getElementById("lastSync"),
+  kpiRows: document.getElementById("kpiRows"),
+  kpiQty: document.getElementById("kpiQty"),
+  kpiBrands: document.getElementById("kpiBrands"),
+  kpiSoon: document.getElementById("kpiSoon"),
+  kpiOverdue: document.getElementById("kpiOverdue"),
+  kpiNext: document.getElementById("kpiNext"),
+  alertCount: document.getElementById("alertCount"),
+  alertsList: document.getElementById("alertsList"),
+  brandBars: document.getElementById("brandBars"),
+  arrivalTable: document.getElementById("arrivalTable"),
+  arrivalMonthBars: document.getElementById("arrivalMonthBars"),
+  fieldMap: document.getElementById("fieldMap"),
+  rawTableWrap: document.getElementById("rawTableWrap"),
+};
+
+const dateFormatter = new Intl.DateTimeFormat("es-PY", {
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+});
+
+const numFormatter = new Intl.NumberFormat("es-PY");
+const monthFormatter = new Intl.DateTimeFormat("es-PY", { month: "short", year: "numeric" });
+
+function normalize(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
 }
 
-function normalizeRow(row){
+function cleanText(value) {
+  return String(value || "").trim();
+}
+
+function toNumber(value) {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (value === null || value === undefined) return NaN;
+  const cleaned = String(value).replace(/\./g, "").replace(/,/g, ".").replace(/[^0-9.-]/g, "");
+  const parsed = Number(cleaned);
+  return Number.isFinite(parsed) ? parsed : NaN;
+}
+
+function parseSlashDate(trimmed, order = "AUTO") {
+  const m = trimmed.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{2,4})$/);
+  if (!m) return null;
+
+  const a = Number(m[1]);
+  const b = Number(m[2]);
+  const year = Number(m[3].length === 2 ? `20${m[3]}` : m[3]);
+
+  let mode = order;
+  if (mode === "AUTO") {
+    if (a > 12 && b <= 12) mode = "DMY";
+    else if (b > 12 && a <= 12) mode = "MDY";
+    else mode = "MDY";
+  }
+
+  const month = mode === "DMY" ? b : a;
+  const day = mode === "DMY" ? a : b;
+  if (month < 1 || month > 12 || day < 1 || day > 31) return null;
+
+  const d = new Date(year, month - 1, day);
+  if (Number.isNaN(d.getTime())) return null;
+  if (d.getMonth() !== month - 1 || d.getDate() !== day || d.getFullYear() !== year) return null;
+  return d;
+}
+
+function toDate(value, order = "AUTO") {
+  if (!value) return null;
+  if (value instanceof Date && !Number.isNaN(value.getTime())) return value;
+
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    if (!trimmed) return null;
+
+    if (/^\d{4}-\d{2}-\d{2}/.test(trimmed)) {
+      const d = new Date(trimmed);
+      return Number.isNaN(d.getTime()) ? null : d;
+    }
+
+    const parsedSlash = parseSlashDate(trimmed, order);
+    if (parsedSlash) return parsedSlash;
+  }
+
+  return null;
+}
+
+function startOfDay(date = new Date()) {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
+function diffInDays(target, base) {
+  const ms = startOfDay(target).getTime() - startOfDay(base).getTime();
+  return Math.round(ms / 86400000);
+}
+
+function detectFields(rows) {
+  if (!rows.length) {
+    return { brandKey: null, qtyKey: null, arrivalKey: null, providerKey: null, categoryKey: null };
+  }
+
+  const keys = Object.keys(rows[0]);
+  const scored = keys.map((key) => {
+    const id = normalize(key);
+    return {
+      key,
+      brandScore: (id.includes("marca") ? 5 : 0) + (id.includes("brand") ? 4 : 0),
+      qtyScore:
+        (id.includes("cantidad") ? 5 : 0) +
+        (id.includes("qty") ? 4 : 0) +
+        (id.includes("quantity") ? 4 : 0) +
+        (id.includes("unidades") ? 3 : 0) +
+        (id.includes("units") ? 3 : 0),
+      dateScore:
+        (id.includes("fechallegada") ? 8 : 0) +
+        (id.includes("llegada") ? 5 : 0) +
+        (id.includes("arrival") ? 5 : 0) +
+        (id.includes("eta") ? 4 : 0) +
+        (id.includes("arribo") ? 4 : 0) +
+        (id.includes("fecha") ? 1 : 0),
+      providerScore: (id.includes("proveedor") ? 7 : 0) + (id.includes("supplier") ? 5 : 0),
+      categoryScore:
+        (id.includes("categoria") ? 7 : 0) +
+        (id.includes("category") ? 5 : 0) +
+        (id.includes("articulo") ? 3 : 0) +
+        (id.includes("tipo") ? 1 : 0),
+    };
+  });
+
+  const sample = rows.slice(0, 35);
+  for (const item of scored) {
+    const values = sample.map((r) => r[item.key]).filter((v) => v !== null && v !== undefined && v !== "");
+    if (!values.length) continue;
+
+    const numericCount = values.filter((v) => Number.isFinite(toNumber(v))).length;
+    const dateCount = values.filter((v) => toDate(v, "AUTO")).length;
+    const textCount = values.filter((v) => typeof v === "string" && String(v).trim().length > 1).length;
+
+    if (numericCount / values.length > 0.65) item.qtyScore += 2;
+    if (dateCount / values.length > 0.65) item.dateScore += 2;
+    if (textCount / values.length > 0.65) {
+      item.brandScore += 1;
+      item.providerScore += 1;
+      item.categoryScore += 1;
+    }
+  }
+
+  const byScore = (field) => [...scored].sort((a, b) => b[field] - a[field])[0];
+  const pick = (field) => {
+    const p = byScore(field);
+    return p && p[field] > 0 ? p.key : null;
+  };
+
   return {
-    marca: (row['MARCA '] || row['MARCA'] || '').trim(),
-    temporada: (row['TEMPORADA '] || row['TEMPORADA'] || '').trim(),
-    proveedor: (row['PROVEEDOR'] || '').trim(),
-    categoria: (row['CATEGORIA '] || row['CATEGORIA'] || '').trim(),
-    info: (row['INFO GRAL.'] || row['INFO GRAL'] || '').trim(),
-    ean: (row['CODIGO EAN '] || row['CODIGO EAN'] || '').trim(),
-    descripcion: (row['DESCRIPCI�N '] || row['DESCRIPCI�N'] || row['DESCRIPCIÓN '] || row['DESCRIPCIÓN'] || row['DESCRIPCI�N'] || row['DESCRIPCION'] || '').trim(),
-    color: (row['COLOR/WASH'] || row['COLOR/WASH'] || row['COLOR/WASH '] || row['COLOR'] || '').trim(),
-    cantidad: safeNumber(row['CANTIDAD'] || row['CANTIDAD '] || row['Cantidad'] || row['cantidad']),
-    origen: (row['ORIGEN'] || '').trim(),
-    costo: safeNumber(row['COSTO ESTIMADO '] || row['COSTO ESTIMADO'] || row['COSTO'] || ''),
-    pvp_b2c: (row['PVP SUGERIDO B2C'] || row['PVP SUGERIDO B2C'] || row['PVP SUGERIDO B2C '] || row['PVP SUGERIDO B2C'] || row['PVP SUGERIDO'] || '').toString().trim(),
-    arribo: (row['FECHA APROXIMADA DE ARRIBO'] || row['FECHA APROXIMADA DE ARRIBO '] || row['FECHA APROXIMADA DE ARRIBO'] || row['Arribo'] || '').trim(),
-    arriboDate: parseDate((row['FECHA APROXIMADA DE ARRIBO'] || row['FECHA APROXIMADA DE ARRIBO '] || row['Arribo'] || '').toString())
+    brandKey: pick("brandScore"),
+    qtyKey: pick("qtyScore"),
+    arrivalKey: pick("dateScore"),
+    providerKey: pick("providerScore"),
+    categoryKey: pick("categoryScore"),
   };
 }
 
-function parseDate(s){
-  if (!s) return null;
-  s = s.toString().trim();
-  // dd/mm/yyyy or d/m/yyyy
-  const dm = s.match(/(\d{1,2})\s*[\/\-]\s*(\d{1,2})\s*[\/\-]\s*(\d{2,4})/);
-  if (dm){
-    let day = Number(dm[1]), month = Number(dm[2]) - 1, year = Number(dm[3]);
-    if (year < 100) year += 2000;
-    return new Date(year, month, day);
+function inferDateFormat(rows, dateKey) {
+  if (!dateKey || !rows.length) return "AUTO";
+
+  let firstPartGt12 = 0;
+  let secondPartGt12 = 0;
+  for (const row of rows.slice(0, 600)) {
+    const raw = row[dateKey];
+    if (!raw || typeof raw !== "string") continue;
+    const m = raw.trim().match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{2,4})$/);
+    if (!m) continue;
+    const a = Number(m[1]);
+    const b = Number(m[2]);
+    if (a > 12) firstPartGt12 += 1;
+    if (b > 12) secondPartGt12 += 1;
   }
-  // month name in Spanish (optionally with year)
-  const months = {enero:0,febrero:1,marzo:2,abril:3,mayo:4,junio:5,julio:6,agosto:7,septiembre:8,octubre:9,noviembre:10,diciembre:11};
-  const m = s.toLowerCase().match(/(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)(?:\s*(\d{4}))?/);
-  if (m){
-    const month = months[m[1]];
-    const year = m[2] ? Number(m[2]) : (new Date()).getFullYear();
-    return new Date(year, month, 1);
+
+  if (secondPartGt12 > firstPartGt12) return "MDY";
+  if (firstPartGt12 > secondPartGt12) return "DMY";
+  return "MDY";
+}
+
+function detectDateColumns(rows, dateFormat) {
+  if (!rows.length) return [];
+  const keys = Object.keys(rows[0]);
+  return keys.filter((key) => {
+    const id = normalize(key);
+    if (id.includes("fecha") || id.includes("date") || id.includes("arrival") || id.includes("arribo")) return true;
+
+    const sample = rows.slice(0, 25).map((r) => r[key]).filter((v) => v !== null && v !== undefined && v !== "");
+    if (!sample.length) return false;
+    const dateCount = sample.filter((v) => toDate(v, dateFormat)).length;
+    return dateCount / sample.length > 0.75;
+  });
+}
+
+function detectNumericColumns(rows, fields) {
+  if (!rows.length) return [];
+  const keys = Object.keys(rows[0]);
+  const preferred = [fields.qtyKey].filter(Boolean);
+  const forcedTextKeys = new Set([fields.brandKey, fields.providerKey, fields.categoryKey].filter(Boolean));
+
+  return keys.filter((key) => {
+    const id = normalize(key);
+    if (forcedTextKeys.has(key)) return false;
+    if (
+      id.includes("marca") ||
+      id.includes("proveedor") ||
+      id.includes("categoria") ||
+      id.includes("descripcion") ||
+      id.includes("color") ||
+      id.includes("origen") ||
+      id.includes("temporada")
+    ) {
+      return false;
+    }
+    if (id.includes("cantidad") || id.includes("pvp") || id.includes("margen") || id.includes("costo")) return true;
+
+    const sample = rows.slice(0, 30).map((r) => r[key]).filter((v) => v !== null && v !== undefined && v !== "");
+    if (!sample.length) return preferred.includes(key);
+    const numericCount = sample.filter((v) => Number.isFinite(toNumber(v))).length;
+    return numericCount / sample.length > 0.8;
+  });
+}
+
+function setStatus(type, message) {
+  els.statusBox.className = `status-box ${type}`;
+  els.statusBox.textContent = message;
+}
+
+function statusLabel(days) {
+  if (days < 0) return { text: "Atrasado", cls: "bad" };
+  if (days === 0) return { text: "Hoy", cls: "warn" };
+  if (days <= 7) return { text: "Proximo", cls: "warn" };
+  return { text: "En tiempo", cls: "ok" };
+}
+
+function formatRelativeDays(days) {
+  if (days < 0) return `${Math.abs(days)} dias tarde`;
+  if (days === 0) return "Llega hoy";
+  if (days === 1) return "Falta 1 dia";
+  return `Faltan ${days} dias`;
+}
+
+async function fetchImportRows() {
+  const url = `${CONFIG.supabaseUrl}/rest/v1/${encodeURIComponent(CONFIG.table)}?select=*`;
+  const response = await fetch(url, {
+    headers: {
+      apikey: CONFIG.supabaseAnonKey,
+      Authorization: `Bearer ${CONFIG.supabaseAnonKey}`,
+      Range: `0-${CONFIG.maxRows - 1}`,
+    },
+  });
+
+  if (!response.ok) {
+    const errorPayload = await response.text();
+    throw new Error(`Supabase ${response.status}: ${errorPayload}`);
   }
-  // try generic parse
-  const d = new Date(s);
-  return isNaN(d) ? null : d;
+
+  const data = await response.json();
+  return Array.isArray(data) ? data : [];
 }
 
-function renderCards(data){
-  const uniqueSkus = new Set(data.map(d=> (d.marca+'|'+d.descripcion).toLowerCase()));
-  const totalUnits = data.reduce((s,d)=> s + (Number(d.cantidad)||0),0);
-  // This sheet is for imports — show totals as imported
-  selectors.cardSkus.textContent = uniqueSkus.size.toLocaleString();
-  selectors.cardUnits.textContent = totalUnits.toLocaleString();
-  selectors.cardImported.textContent = totalUnits.toLocaleString();
+function renderKpis(meta) {
+  els.kpiRows.textContent = numFormatter.format(meta.totalRows);
+  els.kpiQty.textContent = numFormatter.format(meta.totalQty);
+  els.kpiBrands.textContent = numFormatter.format(meta.uniqueBrands);
+  els.kpiSoon.textContent = numFormatter.format(meta.soonCount);
+  els.kpiOverdue.textContent = numFormatter.format(meta.overdueCount);
+  els.kpiNext.textContent = meta.nextArrivalDate ? dateFormatter.format(meta.nextArrivalDate) : "-";
 }
 
-function renderTable(data){
-  selectors.tableBody.innerHTML = '';
-  const frag = document.createDocumentFragment();
-  data.forEach(r=>{
-    const tr = document.createElement('tr');
-    tr.className = 'hover:bg-gray-50';
-    tr.innerHTML = `
-      <td class="px-3 py-2">${escapeHtml(r.marca)}</td>
-      <td class="px-3 py-2">${escapeHtml(r.descripcion)}</td>
-      <td class="px-3 py-2">${escapeHtml(r.color)}</td>
-      <td class="px-3 py-2">${Number(r.cantidad).toLocaleString()}</td>
-      <td class="px-3 py-2">${escapeHtml(r.origen)}</td>
-      <td class="px-3 py-2">${escapeHtml(r.proveedor)}</td>
-      <td class="px-3 py-2">${escapeHtml(r.pvp_b2c)}</td>
-      <td class="px-3 py-2">${escapeHtml(r.arribo)}</td>
-    `;
-    frag.appendChild(tr);
-  });
-  selectors.tableBody.appendChild(frag);
-}
-
-function escapeHtml(s){
-  return (s||'').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-function renderCharts(data){
-  // Origin chart
-  const originCounts = data.reduce((m,d)=>{
-    const key = (d.origen||'Desconocido').trim();
-    m[key] = (m[key]||0) + Number(d.cantidad||0);
-    return m;
-  },{});
-  const originLabels = Object.keys(originCounts);
-  const originValues = originLabels.map(l=> originCounts[l]);
-
-  const ctxOrigin = document.getElementById('originChart').getContext('2d');
-  if (originChart) originChart.destroy();
-  originChart = new Chart(ctxOrigin, {
-    type: 'doughnut',
-    data: { labels: originLabels, datasets: [{ data: originValues, backgroundColor: ['#10B981','#EF4444','#3B82F6','#F59E0B','#A78BFA'] }] },
-    options: { responsive: true, plugins:{legend:{position:'bottom'}} }
-  });
-
-  // Category chart (top 8 categories by units)
-  const catCounts = data.reduce((m,d)=>{
-    const key = (d.categoria||'Sin categoría').trim();
-    m[key] = (m[key]||0) + Number(d.cantidad||0);
-    return m;
-  },{});
-  const sortedCats = Object.entries(catCounts).sort((a,b)=> b[1]-a[1]).slice(0,8);
-  const catLabels = sortedCats.map(s=>s[0]);
-  const catValues = sortedCats.map(s=>s[1]);
-  const ctxCat = document.getElementById('categoryChart').getContext('2d');
-  if (categoryChart) categoryChart.destroy();
-  categoryChart = new Chart(ctxCat, {
-    type: 'bar',
-    data: { labels: catLabels, datasets: [{ label: 'Unidades', data: catValues, backgroundColor: '#6D28D9' }] },
-    options: { indexAxis: 'y', responsive: true, plugins:{legend:{display:false}} }
-  });
-}
-
-function applySearchFilter(data, q){
-  if (!q) return data;
-  q = q.toLowerCase();
-  return data.filter(d=> (
-    (d.marca||'').toLowerCase().includes(q) ||
-    (d.descripcion||'').toLowerCase().includes(q) ||
-    (d.color||'').toLowerCase().includes(q) ||
-    (d.proveedor||'').toLowerCase().includes(q)
-  ));
-}
-
-function processParsed(rows){
-  rawData = rows.map(normalizeRow).filter(r=> r.descripcion || r.marca);
-  const q = selectors.search.value.trim();
-  const filtered = applySearchFilter(rawData, q);
-  renderCards(filtered);
-  renderTable(filtered);
-  renderCharts(filtered);
-  renderArrivals(filtered);
-}
-
-function renderArrivals(data){
-  const now = new Date();
-  const withDates = data.filter(d=> d.arriboDate instanceof Date && !isNaN(d.arriboDate) && d.arriboDate >= now);
-  if (withDates.length === 0){
-    selectors.topArrivals.innerHTML = '<li class="text-sm text-gray-500">No hay arribos próximos registrados.</li>';
-    selectors.restArrivals.innerHTML = '';
+function renderAlerts(alerts) {
+  els.alertCount.textContent = String(alerts.length);
+  if (!alerts.length) {
+    els.alertsList.innerHTML = '<div class="alert-item info"><strong>Sin alertas criticas</strong><small>Los tiempos de llegada estan dentro del rango esperado.</small></div>';
     return;
   }
 
-  // encontrar la fecha mínima (la más próxima)
-  const minTs = Math.min(...withDates.map(d=> d.arriboDate.getTime()));
-  const nearestDate = new Date(minTs);
-
-  const nearestGroup = withDates.filter(d=> d.arriboDate.getTime() === minTs).sort((a,b)=> b.cantidad - a.cantidad);
-  const rest = withDates.filter(d=> d.arriboDate.getTime() > minTs).sort((a,b)=> a.arriboDate - b.arriboDate);
-
-  // Top: todos los de la fecha más cercana (lista solapada)
-  selectors.topArrivals.innerHTML = '';
-  nearestGroup.forEach((r,i)=>{
-    const li = document.createElement('li');
-    li.className = 'p-4 border rounded-md bg-white arrival-card';
-    li.style.zIndex = String(100 - i);
-    li.style.marginTop = i === 0 ? '0' : '-8px';
-    const days = Math.ceil((r.arriboDate - now)/(1000*60*60*24));
-    li.innerHTML = `
-      <div class="flex justify-between items-start">
-        <div>
-          <div class="text-sm font-semibold">${escapeHtml(r.marca)} — ${escapeHtml(r.descripcion)}</div>
-          <div class="text-xs text-gray-500">${escapeHtml(r.color)} · ${escapeHtml(r.proveedor)}</div>
-        </div>
-        <div class="text-right">
-          <div class="text-lg font-bold">${Number(r.cantidad).toLocaleString()}</div>
-          <div class="text-xs text-gray-500">${r.arriboDate.toLocaleDateString()} · ${days}d</div>
-        </div>
-      </div>
-    `;
-    selectors.topArrivals.appendChild(li);
-  });
-  // After rendering, collapse to show only 5 records visually (stacked)
-  const itemCount = nearestGroup.length;
-  const visibleCount = 5;
-  const wrap = selectors.topArrivalsWrap;
-  // reset
-  wrap.style.maxHeight = '';
-  wrap.dataset.visibleHeight = '';
-  if (itemCount > visibleCount){
-    // compute height based on first item's height and overlap (12px)
-    const first = selectors.topArrivals.querySelector('li');
-    if (first){
-      // force layout
-        const liHeight = first.offsetHeight;
-        const overlap = 8; // match CSS negative margin
-        const visibleHeight = Math.round(liHeight + (visibleCount - 1) * (liHeight - overlap));
-      wrap.style.maxHeight = visibleHeight + 'px';
-      wrap.dataset.visibleHeight = String(visibleHeight);
-      selectors.gradientTop.style.display = 'block';
-      selectors.toggleTop.style.display = 'inline-block';
-      selectors.toggleTop.textContent = 'Mostrar más';
-      wrap.dataset.collapsed = 'true';
-    }
-  }else{
-    selectors.gradientTop.style.display = 'none';
-    selectors.toggleTop.style.display = 'none';
-    wrap.dataset.collapsed = 'false';
-  }
-
-  // Rest: todos los productos que vienen después de la fecha más cercana
-  selectors.restArrivals.innerHTML = '';
-  rest.forEach(r=>{
-    const li = document.createElement('li');
-    li.className = 'p-2 border-b';
-    li.innerHTML = `<div class="flex justify-between"><div class="text-sm">${escapeHtml(r.marca)} — ${escapeHtml(r.descripcion)} <span class="text-xs text-gray-500">(${escapeHtml(r.color)})</span></div><div class="text-sm font-semibold">${Number(r.cantidad).toLocaleString()} · ${r.arriboDate.toLocaleDateString()}</div></div>`;
-    selectors.restArrivals.appendChild(li);
-  });
+  els.alertsList.innerHTML = alerts
+    .map((a) => `<div class="alert-item ${a.type}"><strong>${a.title}</strong><small>${a.message}</small></div>`)
+    .join("");
 }
 
-// Toggle rest arrivals
-selectors.toggleRest.addEventListener('click', ()=>{
-  const wrap = selectors.restArrivalsWrap;
-  const expanded = wrap.classList.toggle('max-h-[2000px]');
-  document.getElementById('gradientMask').style.display = expanded ? 'none' : 'block';
-  selectors.toggleRest.textContent = expanded ? 'Mostrar menos' : 'Mostrar más';
-  if (!expanded) {
-    // collapsed -> scroll to top of page
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+function renderBrands(brandStats, totalQty) {
+  if (!brandStats.length) {
+    els.brandBars.innerHTML = "<p class='muted'>No se pudo calcular marcas con los filtros actuales.</p>";
+    return;
   }
-});
 
-// Toggle top arrivals
-selectors.toggleTop.addEventListener('click', ()=>{
-  const wrap = selectors.topArrivalsWrap;
-  const collapsed = wrap.dataset.collapsed === 'true';
-  if (collapsed){
-    // expand
-    wrap.style.maxHeight = '2000px';
-    selectors.gradientTop.style.display = 'none';
-    selectors.toggleTop.textContent = 'Mostrar menos';
-    wrap.dataset.collapsed = 'false';
-  }else{
-    // collapse back to stored visible height
-    const h = wrap.dataset.visibleHeight || '';
-    wrap.style.maxHeight = h ? (h + 'px') : '';
-    selectors.gradientTop.style.display = h ? 'block' : 'none';
-    selectors.toggleTop.textContent = 'Mostrar más';
-    wrap.dataset.collapsed = 'true';
-    // collapsed -> scroll to top of page
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-});
-
-function tryFetchDefaultCSV(){
-  // Try to fetch the CSV by the filename in the workspace root and decode as windows-1252 (Latin1)
-  fetch(DEFAULT_CSV).then(r=>{
-    if (!r.ok) throw new Error('No cargado');
-    return r.arrayBuffer();
-  }).then(buf=>{
-    let txt;
-    try{
-      txt = new TextDecoder('windows-1252').decode(buf);
-    }catch(e){
-      txt = new TextDecoder('iso-8859-1').decode(buf);
-    }
-    const parsed = Papa.parse(txt, { header: true, skipEmptyLines: true });
-    processParsed(parsed.data);
-  }).catch(()=>{
-    // silently allow user to upload file
-    console.warn('No se pudo cargar CSV por defecto. Usa el selector para subir el archivo.');
-  });
+  const top = brandStats.slice(0, 8);
+  els.brandBars.innerHTML = top
+    .map((item) => {
+      const pct = totalQty > 0 ? (item.qty / totalQty) * 100 : 0;
+      return `
+      <div class="bar-row">
+        <div class="bar-label">
+          <span>${item.brand}</span>
+          <span>${numFormatter.format(item.qty)} (${pct.toFixed(1)}%)</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:${Math.max(2, pct)}%"></div></div>
+      </div>`;
+    })
+    .join("");
 }
 
-function handleFileUpload(file){
-  if (!file) return;
-  // Use FileReader with windows-1252 to preserve tildes from Excel-exported CSV
-  const reader = new FileReader();
-  reader.onload = function(e){
-    const txt = e.target.result;
-    const parsed = Papa.parse(txt, { header: true, skipEmptyLines: true });
-    processParsed(parsed.data);
+function renderArrivals(arrivals) {
+  const nearest = arrivals[0] ? startOfDay(arrivals[0].arrivalDate).getTime() : null;
+  const visible = nearest === null
+    ? []
+    : arrivals.filter((r) => startOfDay(r.arrivalDate).getTime() === nearest);
+  if (!visible.length) {
+    els.arrivalTable.innerHTML = "<tr><td colspan='5'>No hay fechas de llegada validas para mostrar.</td></tr>";
+    return visible;
+  }
+
+  els.arrivalTable.innerHTML = visible
+    .map((r) => {
+      const s = statusLabel(r.daysUntil);
+      return `
+      <tr>
+        <td>${r.brand}</td>
+        <td>${numFormatter.format(r.qty)}</td>
+        <td>${dateFormatter.format(r.arrivalDate)}</td>
+        <td>${formatRelativeDays(r.daysUntil)}</td>
+        <td><span class="badge ${s.cls}">${s.text}</span></td>
+      </tr>`;
+    })
+    .join("");
+
+  return visible;
+}
+
+function renderFieldMap(fields, dateFormat) {
+  if (!els.fieldMap) return;
+  const formatText = dateFormat === "MDY" ? "MM/DD/YYYY" : dateFormat === "DMY" ? "DD/MM/YYYY" : "Auto";
+  const entries = [
+    ["Marca", fields.brandKey],
+    ["Proveedor", fields.providerKey],
+    ["Tipo articulo", fields.categoryKey],
+    ["Cantidad", fields.qtyKey],
+    ["Fecha llegada", fields.arrivalKey],
+    ["Formato fecha", formatText],
+  ];
+
+  els.fieldMap.innerHTML = entries
+    .map(([label, key]) => `<div class="field-item"><strong>${label}</strong><span>${key || "No detectado"}</span></div>`)
+    .join("");
+}
+
+function renderArrivalsByMonth(arrivals) {
+  if (!els.arrivalMonthBars) return;
+  if (!arrivals.length) {
+    els.arrivalMonthBars.innerHTML = "<p class='muted'>Sin datos de fecha para agrupar por mes.</p>";
+    return;
+  }
+
+  const buckets = new Map();
+  for (const item of arrivals) {
+    const d = item.arrivalDate;
+    const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+    const prev = buckets.get(key) || { count: 0, qty: 0, date: new Date(d.getFullYear(), d.getMonth(), 1) };
+    prev.count += 1;
+    prev.qty += item.qty;
+    buckets.set(key, prev);
+  }
+
+  const data = [...buckets.entries()]
+    .map(([key, value]) => ({ key, ...value }))
+    .sort((a, b) => a.key.localeCompare(b.key))
+    .slice(0, 8);
+
+  const maxCount = Math.max(...data.map((d) => d.count), 1);
+  els.arrivalMonthBars.innerHTML = data
+    .map((d) => {
+      const pct = (d.count / maxCount) * 100;
+      return `
+      <div class="month-row">
+        <div class="month-label">
+          <span>${monthFormatter.format(d.date)}</span>
+          <span>${numFormatter.format(d.count)} arribo(s)</span>
+        </div>
+        <div class="month-track"><div class="month-fill" style="width:${Math.max(pct, 4)}%"></div></div>
+      </div>`;
+    })
+    .join("");
+}
+
+function renderRawPreview(rows, fields, dateFormat) {
+  if (!rows.length) {
+    state.previewColumns = [];
+    state.previewRows = [];
+    els.rawTableWrap.innerHTML = "<p class='muted'>Sin filas para previsualizar.</p>";
+    if (els.toggleRawBtn) els.toggleRawBtn.disabled = true;
+    updateRawCollapseUI();
+    return;
+  }
+  if (els.toggleRawBtn) els.toggleRawBtn.disabled = false;
+
+  const keys = Object.keys(rows[0]);
+  const dateCols = detectDateColumns(rows, dateFormat);
+  const numericCols = detectNumericColumns(rows, fields);
+  const priority = [
+    fields.brandKey,
+    fields.providerKey,
+    fields.categoryKey,
+    fields.qtyKey,
+    fields.arrivalKey,
+    ...dateCols,
+  ].filter(Boolean);
+  const ordered = [...new Set([...priority, ...keys])].slice(0, 12);
+
+  const previewRows = rows.map((row) => {
+    const out = {};
+    for (const key of ordered) {
+      const value = row[key];
+      const id = normalize(key);
+      if (
+        key === fields.brandKey ||
+        key === fields.providerKey ||
+        key === fields.categoryKey ||
+        id.includes("descripcion") ||
+        id.includes("color") ||
+        id.includes("origen") ||
+        id.includes("temporada")
+      ) {
+        out[key] = value ?? "";
+        continue;
+      }
+      if (numericCols.includes(key)) {
+        const n = toNumber(value);
+        out[key] = Number.isFinite(n) ? n : value ?? "";
+        continue;
+      }
+      if (dateCols.includes(key)) {
+        const d = toDate(value, dateFormat);
+        out[key] = d ? (key === fields.arrivalKey ? dateFormatter.format(d) : monthFormatter.format(d)) : value ?? "";
+        continue;
+      }
+      out[key] = value ?? "";
+    }
+    return out;
+  });
+
+  state.previewColumns = ordered;
+  state.previewRows = previewRows;
+
+  const head = ordered.map((k) => `<th>${k}</th>`).join("");
+  const body = previewRows
+    .map((r) => `<tr>${ordered.map((k) => `<td>${r[k] ?? ""}</td>`).join("")}</tr>`)
+    .join("");
+
+  els.rawTableWrap.innerHTML = `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+  updateRawCollapseUI();
+}
+
+function analyzeRows(rows, fields, dateFormat) {
+  const today = new Date();
+  const brandMap = new Map();
+  const arrivals = [];
+  let totalQty = 0;
+
+  for (const row of rows) {
+    const brand = fields.brandKey ? cleanText(row[fields.brandKey] || "Sin marca") : "Sin marca";
+    const qty = fields.qtyKey ? toNumber(row[fields.qtyKey]) : NaN;
+    const arrivalDate = fields.arrivalKey ? toDate(row[fields.arrivalKey], dateFormat) : null;
+
+    if (Number.isFinite(qty)) {
+      totalQty += qty;
+      brandMap.set(brand, (brandMap.get(brand) || 0) + qty);
+    } else {
+      brandMap.set(brand, (brandMap.get(brand) || 0) + 0);
+    }
+
+    if (arrivalDate) {
+      arrivals.push({
+        brand,
+        qty: Number.isFinite(qty) ? qty : 0,
+        arrivalDate,
+        daysUntil: diffInDays(arrivalDate, today),
+      });
+    }
+  }
+
+  arrivals.sort((a, b) => a.arrivalDate - b.arrivalDate);
+
+  const brandStats = [...brandMap.entries()]
+    .map(([brand, qty]) => ({ brand, qty }))
+    .sort((a, b) => b.qty - a.qty);
+
+  const soonCount = arrivals.filter((r) => r.daysUntil >= 0 && r.daysUntil <= 7).length;
+  const overdueCount = arrivals.filter((r) => r.daysUntil < 0).length;
+  const nextArrival = arrivals.find((r) => r.daysUntil >= 0) || null;
+
+  const alerts = [];
+  if (overdueCount > 0) {
+    alerts.push({ type: "bad", title: `${overdueCount} llegada(s) atrasada(s)`, message: "Revisar embarques con fecha pasada para evitar quiebres de stock." });
+  }
+  if (soonCount > 0) {
+    alerts.push({ type: "warn", title: `${soonCount} llegada(s) dentro de 7 dias`, message: "Priorizar coordinacion de recepcion y espacio de deposito." });
+  }
+
+  const next30 = arrivals.filter((r) => r.daysUntil >= 0 && r.daysUntil <= 30).length;
+  if (next30 === 0) {
+    alerts.push({ type: "warn", title: "Sin llegadas en los proximos 30 dias", message: "Existe riesgo de faltante si la demanda se mantiene." });
+  }
+
+  if (brandStats.length && totalQty > 0) {
+    const concentration = (brandStats[0].qty / totalQty) * 100;
+    if (concentration >= 50) {
+      alerts.push({ type: "info", title: `Alta concentracion en ${brandStats[0].brand}`, message: `Esta marca representa ${concentration.toFixed(1)}% del total cargado.` });
+    }
+  }
+
+  return {
+    totalRows: rows.length,
+    totalQty,
+    uniqueBrands: brandStats.length,
+    soonCount,
+    overdueCount,
+    nextArrivalDate: nextArrival ? nextArrival.arrivalDate : null,
+    alerts,
+    brandStats,
+    arrivals,
   };
-  try{
-    reader.readAsText(file, 'windows-1252');
-  }catch(e){
-    // fallback
-    reader.readAsText(file);
+}
+
+function fillSelect(selectEl, values, allLabel) {
+  selectEl.innerHTML = [`<option value="__ALL__">${allLabel}</option>`, ...values.map((v) => `<option value="${v}">${v}</option>`)].join("");
+}
+
+function fillFilters(rows, fields) {
+  const sortText = (a, b) => a.localeCompare(b, "es", { sensitivity: "base" });
+
+  const brands = fields.brandKey
+    ? [...new Set(rows.map((r) => cleanText(r[fields.brandKey])).filter(Boolean))].sort(sortText)
+    : [];
+  const providers = fields.providerKey
+    ? [...new Set(rows.map((r) => cleanText(r[fields.providerKey])).filter(Boolean))].sort(sortText)
+    : [];
+  const categories = fields.categoryKey
+    ? [...new Set(rows.map((r) => cleanText(r[fields.categoryKey])).filter(Boolean))].sort(sortText)
+    : [];
+
+  fillSelect(els.brandFilter, brands, "Todas las marcas");
+  fillSelect(els.providerFilter, providers, "Todos los proveedores");
+  fillSelect(els.categoryFilter, categories, "Todos los tipos");
+}
+
+function sortRows(rows, fields, dateFormat) {
+  const mode = els.sortFilter.value;
+  const sorted = [...rows];
+
+  sorted.sort((a, b) => {
+    const brandA = fields.brandKey ? cleanText(a[fields.brandKey]) : "";
+    const brandB = fields.brandKey ? cleanText(b[fields.brandKey]) : "";
+    const qtyA = fields.qtyKey ? toNumber(a[fields.qtyKey]) : NaN;
+    const qtyB = fields.qtyKey ? toNumber(b[fields.qtyKey]) : NaN;
+    const arrA = fields.arrivalKey ? toDate(a[fields.arrivalKey], dateFormat) : null;
+    const arrB = fields.arrivalKey ? toDate(b[fields.arrivalKey], dateFormat) : null;
+
+    if (mode === "brand_asc") return brandA.localeCompare(brandB, "es", { sensitivity: "base" });
+    if (mode === "brand_desc") return brandB.localeCompare(brandA, "es", { sensitivity: "base" });
+
+    if (mode === "qty_asc" || mode === "qty_desc") {
+      const safeA = Number.isFinite(qtyA) ? qtyA : Number.POSITIVE_INFINITY;
+      const safeB = Number.isFinite(qtyB) ? qtyB : Number.POSITIVE_INFINITY;
+      return mode === "qty_asc" ? safeA - safeB : safeB - safeA;
+    }
+
+    const safeDateA = arrA ? arrA.getTime() : Number.POSITIVE_INFINITY;
+    const safeDateB = arrB ? arrB.getTime() : Number.POSITIVE_INFINITY;
+    return mode === "arrival_desc" ? safeDateB - safeDateA : safeDateA - safeDateB;
+  });
+
+  return sorted;
+}
+
+function filterRows(rows, fields) {
+  const brand = els.brandFilter.value;
+  const provider = els.providerFilter.value;
+  const category = els.categoryFilter.value;
+  const status = els.statusFilter ? els.statusFilter.value : "all";
+
+  return rows.filter((r) => {
+    const okBrand = brand === "__ALL__" || !fields.brandKey || cleanText(r[fields.brandKey]) === brand;
+    const okProvider = provider === "__ALL__" || !fields.providerKey || cleanText(r[fields.providerKey]) === provider;
+    const okCategory = category === "__ALL__" || !fields.categoryKey || cleanText(r[fields.categoryKey]) === category;
+    let okStatus = true;
+    if (status !== "all" && fields.arrivalKey) {
+      const d = toDate(r[fields.arrivalKey], state.dateFormat);
+      if (!d) {
+        okStatus = false;
+      } else {
+        const days = diffInDays(d, new Date());
+        okStatus = status === "overdue" ? days < 0 : days >= 0;
+      }
+    }
+    return okBrand && okProvider && okCategory && okStatus;
+  });
+}
+
+function exportToExcel(rows, fileName, sheetName) {
+  if (!window.XLSX) {
+    setStatus("warn", "No se pudo exportar: libreria XLSX no disponible.");
+    return;
+  }
+
+  const ws = window.XLSX.utils.json_to_sheet(rows);
+  const wb = window.XLSX.utils.book_new();
+  window.XLSX.utils.book_append_sheet(wb, ws, sheetName);
+  window.XLSX.writeFile(wb, fileName);
+}
+
+function exportArrivals() {
+  if (!state.currentAnalysis) return;
+  const rowsToExport = state.currentAnalysis.visibleArrivals || [];
+  const exportRows = rowsToExport.map((r) => ({
+    Marca: r.brand,
+    Cantidad: r.qty,
+    FechaLlegada: dateFormatter.format(r.arrivalDate),
+    DiasHastaLlegada: r.daysUntil,
+    Estado: statusLabel(r.daysUntil).text,
+  }));
+  if (!exportRows.length) return;
+  exportToExcel(exportRows, "proximas_llegadas.xlsx", "ProximasLlegadas");
+}
+
+function exportRawPreview() {
+  if (!state.previewRows.length) return;
+  exportToExcel(state.previewRows, "vista_rapida_import.xlsx", "VistaRapida");
+}
+
+function updateRawCollapseUI() {
+  if (!els.rawCollapse || !els.toggleRawBtn) return;
+  els.rawCollapse.classList.toggle("is-expanded", state.rawExpanded);
+  els.rawCollapse.classList.toggle("is-collapsed", !state.rawExpanded);
+  els.toggleRawBtn.textContent = state.rawExpanded ? "Mostrar menos" : "Mostrar mas";
+}
+
+function toggleRawCollapse() {
+  state.rawExpanded = !state.rawExpanded;
+  updateRawCollapseUI();
+  if (!state.rawExpanded && els.rawSection) {
+    els.rawSection.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
 
-// Events
-selectors.reload.addEventListener('click', ()=> tryFetchDefaultCSV());
-selectors.search.addEventListener('input', ()=> processParsed(rawData));
-selectors.fileInput.addEventListener('change', (e)=> handleFileUpload(e.target.files[0]));
+function applyFiltersAndRender() {
+  const { allRows, fields, dateFormat } = state;
+  if (!fields) return;
 
-// Inicializar
-document.addEventListener('DOMContentLoaded', ()=> tryFetchDefaultCSV());
+  let filtered = filterRows(allRows, fields);
+  filtered = sortRows(filtered, fields, dateFormat);
+
+  const analysis = analyzeRows(filtered, fields, dateFormat);
+  const visibleArrivals = renderArrivals(analysis.arrivals);
+
+  state.currentRows = filtered;
+  state.currentAnalysis = { ...analysis, arrivals: analysis.arrivals, visibleArrivals };
+
+  renderKpis(analysis);
+  renderAlerts(analysis.alerts);
+  renderBrands(analysis.brandStats, analysis.totalQty);
+  renderArrivalsByMonth(analysis.arrivals);
+  renderFieldMap(fields, dateFormat);
+  renderRawPreview(filtered, fields, dateFormat);
+
+  const formatText = dateFormat === "MDY" ? "MM/DD/YYYY" : dateFormat === "DMY" ? "DD/MM/YYYY" : "Auto";
+  const labels = [];
+  if (els.brandFilter.value !== "__ALL__") labels.push(`marca ${els.brandFilter.value}`);
+  if (els.providerFilter.value !== "__ALL__") labels.push(`proveedor ${els.providerFilter.value}`);
+  if (els.categoryFilter.value !== "__ALL__") labels.push(`tipo ${els.categoryFilter.value}`);
+  if (els.statusFilter && els.statusFilter.value === "overdue") labels.push("estado atrasado");
+  if (els.statusFilter && els.statusFilter.value === "on_time") labels.push("estado en tiempo");
+  const filterText = labels.length ? labels.join(" · ") : "sin filtros";
+
+  setStatus("info", `Analisis listo: ${numFormatter.format(filtered.length)} filas (${filterText}) · fecha ${formatText}.`);
+}
+
+async function loadDashboard() {
+  setStatus("info", "Cargando datos desde Supabase...");
+  els.refreshBtn.disabled = true;
+
+  try {
+    const rows = await fetchImportRows();
+
+    if (!rows.length) {
+      renderKpis({ totalRows: 0, totalQty: 0, uniqueBrands: 0, soonCount: 0, overdueCount: 0, nextArrivalDate: null });
+      renderAlerts([]);
+      renderBrands([], 0);
+      renderArrivals([]);
+      renderArrivalsByMonth([]);
+      renderFieldMap({ brandKey: null, providerKey: null, categoryKey: null, qtyKey: null, arrivalKey: null }, "AUTO");
+      renderRawPreview([], { brandKey: null, providerKey: null, categoryKey: null, qtyKey: null, arrivalKey: null }, "AUTO");
+      setStatus("warn", "La tabla Import no tiene filas visibles con esta anon key. Verifica RLS o carga de datos.");
+      return;
+    }
+
+    const fields = detectFields(rows);
+    const dateFormat = inferDateFormat(rows, fields.arrivalKey);
+
+    state.allRows = rows;
+    state.fields = fields;
+    state.dateFormat = dateFormat;
+
+    fillFilters(rows, fields);
+    applyFiltersAndRender();
+
+    const missing = [
+      !fields.brandKey && "marca",
+      !fields.providerKey && "proveedor",
+      !fields.categoryKey && "tipo articulo",
+      !fields.qtyKey && "cantidad",
+      !fields.arrivalKey && "fecha de llegada",
+    ].filter(Boolean);
+
+    if (missing.length) {
+      setStatus("warn", `Datos cargados, pero no detecte automaticamente: ${missing.join(", ")}.`);
+    }
+  } catch (error) {
+    console.error(error);
+    setStatus("bad", `No se pudo conectar a Supabase: ${error.message}`);
+  } finally {
+    els.refreshBtn.disabled = false;
+    els.lastSync.textContent = `Ultima sync: ${new Date().toLocaleString("es-PY")}`;
+  }
+}
+
+els.refreshBtn.addEventListener("click", loadDashboard);
+els.brandFilter.addEventListener("change", applyFiltersAndRender);
+els.providerFilter.addEventListener("change", applyFiltersAndRender);
+els.categoryFilter.addEventListener("change", applyFiltersAndRender);
+if (els.statusFilter) {
+  els.statusFilter.addEventListener("change", applyFiltersAndRender);
+}
+els.sortFilter.addEventListener("change", applyFiltersAndRender);
+els.exportArrivalsBtn.addEventListener("click", exportArrivals);
+els.exportRawBtn.addEventListener("click", exportRawPreview);
+if (els.toggleRawBtn) {
+  els.toggleRawBtn.addEventListener("click", toggleRawCollapse);
+}
+
+updateRawCollapseUI();
+loadDashboard();
+
